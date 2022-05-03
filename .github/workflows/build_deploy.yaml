@@ -9,7 +9,7 @@ jobs:
     environment: production
     env:
       SERVICE_NAME: hiway
-      IMAGE_TAG: australia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/soil/hiway:latest
+      IMAGE_TAG: australia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hiway/hiway:latest
     steps:
       - name: Login to GAR
         uses: docker/login-action@v1
