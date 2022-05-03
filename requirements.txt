@@ -1,0 +1,9 @@
+pandas
+geopandas
+numpy
+scipy
+streamlit
+plotly
+googlemaps
+gmplot
+black
