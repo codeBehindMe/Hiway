@@ -11,15 +11,6 @@ jobs:
       SERVICE_NAME: hiway
       IMAGE_TAG: australia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hiway/hiway:latest
     steps:
-      - name: Auhenticate cloud sdk
-        id: auth
-        uses: google-github-actions/auth@v0
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-      - name: Setup Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0
-      - name: Download bridges json file
-        run:  gsutil cp ${{ secrets.VIC_BRIDGES_FILE_PATH }} .
       - name: Login to GAR
         uses: docker/login-action@v1
         with:
