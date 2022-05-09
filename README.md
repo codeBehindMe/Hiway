@@ -7,7 +7,7 @@ Heavy vehicle route planning
 Install Python 3, and GDAL with brew:
 
 ```
-brew install python@3.10
+brew install python@3.9
 brew install gdal
 ```
 
