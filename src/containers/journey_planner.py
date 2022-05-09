@@ -18,7 +18,6 @@ def _route_information(col: Any):
     origin_addr = col.text_input("Origin address")
     dest_addr = col.text_input("Destination address")
 
-    route: bool = col.button("Generate route")
     if origin_addr and dest_addr:
         af = AddressFinder(config.GOOGLE_MAPS_KEY)
         valid_origin = af.find_address(origin_addr)
