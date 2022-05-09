@@ -5,6 +5,7 @@ import os
 import plotly.express as px
 
 
+GOOGLE_MAPS_KEY : str = os.environ["GOOGLE_MAPS_KEY"]
 px.set_mapbox_access_token(os.environ["MAPBOX_TOKEN"])
 st.set_page_config(layout="wide")
 
