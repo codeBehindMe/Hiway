@@ -1,6 +1,7 @@
 from typing import Tuple
 import googlemaps as gmaps
 import pandas as pd
+from src.models.path import Path, Point, Segment
 from src.pathing.address_finder import ValidAddress
 
 
@@ -16,6 +17,20 @@ class PathFinder:
         for step in res[0]["legs"][0]["steps"]:
             yield step["start_location"]["lat"], step["start_location"]["lng"]
             yield step["end_location"]["lat"], step["end_location"]["lng"]
+
+    @staticmethod
+    def _get_path_from_directions_response(res: dict) -> Path:
+
+        segments = []
+        for step in res[0]["legs"][0]["steps"]:
+            segments.append(
+                Segment(
+                    Point(step["start_location"]["lat"], step["start_location"]["lng"]),
+                    Point(step["end_location"]["lat"], step["end_location"]["lng"]),
+                )
+            )
+
+        return Path(segments)
 
     def get_path_points_df(self, start_loc: ValidAddress, end_loc: ValidAddress):
         print(start_loc, end_loc)
