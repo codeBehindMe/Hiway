@@ -10,15 +10,6 @@ class PathFinder:
         self.client = gmaps.Client(key=google_maps_key)
 
     @staticmethod
-    def _get_points_from_directions_response(res):
-
-        print(res)
-
-        for step in res[0]["legs"][0]["steps"]:
-            yield step["start_location"]["lat"], step["start_location"]["lng"]
-            yield step["end_location"]["lat"], step["end_location"]["lng"]
-
-    @staticmethod
     def _get_path_from_directions_response(res: dict) -> Path:
 
         segments = []
@@ -38,7 +29,5 @@ class PathFinder:
             (start_loc.LAT, start_loc.LNG), (end_loc.LAT, end_loc.LNG), mode="driving"
         )
 
-        pts = self._get_points_from_directions_response(res)
-        df = pd.DataFrame(pts)
-        df = df.rename(columns={0: "lat", 1: "lng"})
-        return df
+        path = self._get_path_from_directions_response(res)
+        return path.to_dataframe()
