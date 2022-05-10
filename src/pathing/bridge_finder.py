@@ -55,4 +55,4 @@ class BridgeFinder:
 
         bridges_df: pd.DataFrame = pd.concat(bridges)
         # FIXME: Need to get unique bridge IDs only.
-        return bridges_df
+        return bridges_df[["ID_STRUCTURE", "BRIDGE_TYPE", "BRIDGE_RATING"]]

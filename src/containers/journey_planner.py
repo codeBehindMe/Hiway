@@ -32,7 +32,7 @@ def _route_information(col: Any):
         col.plotly_chart(px.line_mapbox(path_df, lat="lat", lon="lng"))
         bridge_finder = BridgeFinder(bridge_data.get_processed_df(), 0.01)
         # FIXME : Changed to subset of columns in df.
-        col.write(
+        col.dataframe(
             bridge_finder.find_bridges_in_path(
                 pf.get_path(valid_origin, valid_destination)
             )
