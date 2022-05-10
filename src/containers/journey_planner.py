@@ -2,6 +2,8 @@ from typing import Any
 import streamlit as st
 from src.pathing.address_finder import AddressFinder
 from src.pathing.path_finder import PathFinder
+from src.pathing.bridge_finder import BridgeFinder
+from src.bridges.data import bridge_data
 import plotly.express as px
 import src.config as config
 
@@ -28,6 +30,13 @@ def _route_information(col: Any):
 
         # FIXME: Chart Title
         col.plotly_chart(px.line_mapbox(path_df, lat="lat", lon="lng"))
+        bridge_finder = BridgeFinder(bridge_data.get_processed_df(), 0.01)
+        # FIXME : Changed to subset of columns in df.
+        col.write(
+            bridge_finder.find_bridges_in_path(
+                pf.get_path(valid_origin, valid_destination)
+            )
+        )
 
 
 def _vehicle_information(col: Any):

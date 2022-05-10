@@ -23,11 +23,12 @@ class PathFinder:
 
         return Path(segments)
 
-    def get_path_points_df(self, start_loc: ValidAddress, end_loc: ValidAddress):
-        print(start_loc, end_loc)
+    def get_path(self, start_loc: ValidAddress, end_loc: ValidAddress) -> Path:
         res = self.client.directions(
             (start_loc.LAT, start_loc.LNG), (end_loc.LAT, end_loc.LNG), mode="driving"
         )
+        return self._get_path_from_directions_response(res)
 
-        path = self._get_path_from_directions_response(res)
-        return path.to_dataframe()
+    def get_path_points_df(self, start_loc: ValidAddress, end_loc: ValidAddress):
+
+        return self.get_path(start_loc, end_loc).to_dataframe()

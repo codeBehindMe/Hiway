@@ -53,6 +53,6 @@ class BridgeFinder:
         for segment in path.segments:
             bridges.append(self._find_bridges_in_segment(segment))
 
-        bridges_df = pd.concat(bridges)
+        bridges_df: pd.DataFrame = pd.concat(bridges)
         # FIXME: Need to get unique bridge IDs only.
         return bridges_df
