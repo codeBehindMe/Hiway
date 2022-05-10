@@ -31,7 +31,8 @@ def _route_information(col: Any):
         # FIXME: Chart Title
         col.plotly_chart(px.line_mapbox(path_df, lat="lat", lon="lng"))
         bridge_finder = BridgeFinder(bridge_data.get_processed_df(), 0.01)
-        # FIXME : Changed to subset of columns in df.
+        # FIXME: Changed to subset of columns in df.
+        # FIXME: Dataframe title
         col.dataframe(
             bridge_finder.find_bridges_in_path(
                 pf.get_path(valid_origin, valid_destination)
@@ -47,12 +48,18 @@ def _vehicle_information(col: Any):
     """
     )
 
-    v_length = col.text_input("Length (m)")
-    v_width = col.text_input("Width (m)")
-    v_height = col.text_input("Height (m)")
+    with st.form("Vehicle info"):
 
-    v_num_axles = col.text_input("Number of axles")
-    v_dist_extreme_axles = col.text_input("Dicol.nce between extreme axles (m)")
+        v_length = col.text_input("Length (m)")
+        v_width = col.text_input("Width (m)")
+        v_height = col.text_input("Height (m)")
+
+        v_num_axles = col.text_input("Number of axles")
+        v_dist_extreme_axles = col.text_input("Dicol.nce between extreme axles (m)")
+
+        v_gross_weight = col.number_input("Gross weight in kg")
+
+        submitted = st.form_submit_button("Submit")
 
 
 def journey_planner():
