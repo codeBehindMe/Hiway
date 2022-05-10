@@ -26,6 +26,7 @@ def _route_information(col: Any):
         pf = PathFinder(config.GOOGLE_MAPS_KEY)
         path_df: pd.DataFrame = pf.get_path_points_df(valid_origin, valid_destination)
 
+        # FIXME: Chart Title
         col.plotly_chart(px.line_mapbox(path_df, lat="lat", lon="lng"))
 
 
