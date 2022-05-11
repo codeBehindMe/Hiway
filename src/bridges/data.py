@@ -14,3 +14,6 @@ class BridgeData:
         self.bridges["lat"] = self.bridges["geometry"].apply(lambda p: p.y)
 
         return self.bridges
+
+
+bridge_data = BridgeData("vic_bridges.geojson")
